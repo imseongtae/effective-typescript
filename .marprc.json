@@ -1,0 +1,14 @@
+{
+  "markdown": {
+    "shortcode": true,
+    "breaks": true
+  },
+  "themeSet": "./themes",
+  "html": true,
+  "allowLocalFiles": false,
+  "minify": true,
+  "options": {
+    "progressBar": true,
+    "script": true
+  }
+}
