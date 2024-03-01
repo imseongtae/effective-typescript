@@ -29,5 +29,6 @@ module.exports = {
         arrowParens: 'avoid',
       },
     ],
-  }
+  },
+  ignorePatterns: ['node_modules', 'dist'],
 };
