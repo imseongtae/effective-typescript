@@ -13,10 +13,20 @@
     recordingType: 'studio' | 'live';
     releaseDate: Date;
   }
+  // NOTE: Version. 1
+  // const pluck = <T>(records: T[], key: keyof T) => {
+  //   return records.map(r => r[key]);
+  // };
 
-  const pluck = <T, K extends keyof T>(records: T[], key: K): T[K][] => {
-    return records.map(r => r[key]);
-  };
+  // NOTE: Version. 2
+  // const pluck = <T, K extends keyof T>(records: T[], key: K) => {
+  //   return records.map(r => r[key]);
+  // };
+
+  // NOTE: Version. 3
+  // const pluck = <T, K extends keyof T>(records: T[], key: K): T[K][] => {
+  //   return records.map(r => r[key]);
+  // };
 
   const kindOfBlue: Album = {
     artist: 'Miles Davis',
