@@ -5,21 +5,26 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "-----marp preview server 명령어 예시-----": "pnpm marp:s docs/",
+    "-----marp preview server 명령어 예시-----": "pnpm marp:s slides/",
     "marp:s": "marp -p --server",
-    "marp:w": "marp -p --watch"
+    "marp:w": "marp -p --watch",
+    "prepare": "husky",
+    "message": "echo 'commit message를 입력해주세요.'"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@marp-team/marp-cli": "^3.4.0",
+    "@types/node": "^20.11.24",
     "@typescript-eslint/eslint-plugin": "^6.19.1",
     "@typescript-eslint/parser": "^6.19.1",
     "eslint": "^8.56.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.1.3",
+    "husky": "^9.0.11",
     "prettier": "^3.2.4",
+    "ts-node": "^10.9.2",
     "typescript": "^5.3.3"
   }
 }
