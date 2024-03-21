@@ -27,6 +27,23 @@ interface Book {
     return JSON.parse(json);
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+  const book = parseJSON(`{
+    "name": "Villette",
+    "author": "Charlotte Bronte"
+  }`);
+
+  // 반환 타입이 any 이므로 객체 멤버에 안전하지 못한 접근이므로 경고
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+  console.log('name:', book.name);
+}
+
+{
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const parseJSON = (json: string): any => {
+    return JSON.parse(json);
+  };
+
   const safeParseJSON = (json: string): unknown => {
     return parseJSON(json);
   };

@@ -51,4 +51,28 @@
     // eslint-disable-next-line @typescript-eslint/no-unsafe-return
     return out;
   };
+
+  const makeSquares1 = (start: number, limit: number) => {
+    return range(start, limit).map(i => i * i);
+  };
+
+  const result = range(0, 10);
+  console.log('result:', result);
+
+  const squares = makeSquares1(0, 10);
+  console.log('squares:', squares);
+}
+
+{
+  const range = (start: number, limit: number): number[] => {
+    const out = [];
+
+    for (let i = start; i < limit; i++) {
+      out.push(i);
+    }
+    return out;
+  };
+
+  const result = range(0, 0);
+  console.log('result:', result);
 }
