@@ -26,3 +26,18 @@ interface Measurement {
   /** 측정된 운동량 */
   momentum: Vector3D;
 }
+
+{
+  /**
+   * 이 _interface_는 **3 가지** 속성을 가집니다.
+   * 1. x
+   *  1. x-a
+   * 1. y
+   * 1. z
+   */
+  interface Vector3D {
+    x: number;
+    y: number;
+    z: number;
+  }
+}
