@@ -15,7 +15,6 @@
 
   for (k in obj) {
     const v = obj[k];
-    // obj에 인덱스 시그니처가 없으므로 엘리먼트는 암시적 any 타입
   }
 }
 
@@ -29,8 +28,23 @@
   const foo = (abc: ABC) => {
     let k: keyof ABC;
     for (k in abc) {
-      // const k: string
       const v = abc[k];
+    }
+  };
+}
+
+// NOTE: Object.entries 는 복잡한 기교없이 사용할 수 있음
+{
+  interface ABC {
+    a: string;
+    b: string;
+    c: number;
+  }
+
+  const foo = (abc: ABC) => {
+    for (const [k, v] of Object.entries(abc)) {
+      k; // Type is string
+      v; // Type is any }
     }
   };
 }

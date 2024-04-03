@@ -1,5 +1,13 @@
 {
   enum Flavor {
+    VANILLA = 1,
+    CHOCOLATE = 1,
+    STRAWBERRY = 2,
+  }
+}
+
+{
+  enum Flavor {
     VANILLA = 'vanilla',
     CHOCOLATE = 'chocolate',
     STRAWBERRY = 'strawberry',
@@ -18,11 +26,30 @@
     STRAWBERRY = 'strawberry',
   }
 
+  // vanilla | chocolate | strawberry
   let flavor = Flavor.CHOCOLATE;
 
   flavor = Flavor.CHOCOLATE;
 
   console.log(flavor);
+}
+
+// NOTE: 열거형 쓰지 않는 방법
+{
+  const Flavor = {
+    ALL: 'all',
+    VANILLA: 'vanilla',
+    CHOCOLATE: 'chocolate',
+  } as const;
+
+  const Flavor_LABEL = {
+    [Flavor.ALL]: '모두',
+    [Flavor.VANILLA]: '바닐라',
+    [Flavor.CHOCOLATE]: '초콜릿',
+  };
+
+  type FlavorType = (typeof Flavor)[keyof typeof Flavor];
+  const flaver: FlavorType = 'chocolate';
 }
 
 {
