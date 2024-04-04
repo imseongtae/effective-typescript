@@ -1,6 +1,6 @@
-# **Chapter-06**
+# **Chapter-07**
 
-any 다루기
+코드를 작성하고 실행하기
 
 ## Table of contents
 - [53. 타입스크립트 기능보다는 ECMAScript 기능을 사용하기](#53-타입스크립트-기능보다는-ecmascript-기능을-사용하기)
@@ -82,3 +82,75 @@ class Person {
 - 객체를 순회할 때, 키가 어떤 타입인지 정확히 파악하고 있다면, let k: keyof T와 for-in loop 를 사용
   - 함수의 매개변수로 쓰이는 객체에는 추가적인 키가 존재할 수 있다는 점을 명심
 - 객체를 순회하며, 키와 값을 얻는 가장 일반적인 방법은 Object.entries를 사용하는 것
+
+---
+
+## **56. 정보를 감추는 목적으로 private 사용하지 않기**
+- 비공개 속성을 나타내기 위해 언더스코어를 붙이던 기존의 관례
+
+```ts
+class Foo {
+  _private = 'secret123';
+}
+
+const f = new Foo();
+f._private; // 'secret123'
+```
+
+### 정보를 숨기기 위해 클로저 사용
+
+- 인스턴스를 생성할 때마다 메서드의 복사본이 생성되므로 메모리가 낭비됨
+
+```ts
+declare function hash(text: string): number;
+
+class PasswordChecker {
+  checkPassword: (password: string) => boolean;
+  constructor(passwordHash: number) {
+    this.checkPassword = (password: string) => {
+      return hash(password) === passwordHash;
+    };
+  }
+}
+
+const checker = new PasswordChecker(hash('s3cret'));
+checker.checkPassword('s3cret'); // Returns true
+```
+
+### 비공개 필드 기능
+
+```ts
+class PasswordChecker {
+  #passwordHash: number;
+  constructor(passwordHash: number) {
+    this.#passwordHash = passwordHash;
+  }
+  checkPassword(password: string) {
+    return hash(password) === this.#passwordHash;
+  }
+}
+```
+
+### 요약
+- 접근 제어자는 타입 시스템에서만 강제됨 
+  - 런타임에는 소용이 없으며 단언문을 통해 우회할 수 있음
+  - 접근 제어자로 데이터를 감추려고 하면 안됨
+- 확실히 데이터를 감추고 싶다면 클로저를 사용해야 함
+
+---
+
+## **57. 소스맵을 사용하여 타입스크립트 디버깅하기**
+
+타입스크립트 코드를 실행한다는 것 -> 타입스크립트 컴파일러가 생성한 자바스크립트 코드를 실행하는 것
+
+### 디버깅 문제에 대한 해결책
+
+### 디버깅 환경의 중요성
+타입체커가 코드를 실행하기 전에 많은 오류를 잡을 수는 있지만, 디버거를 대체할 수는 없음
+소스맵을 사용해서 제대로 된 타입스크립트 디버깅 환경 구축하기
+
+### 요약
+- 원본 코드가 아닌 변환된 자바스크립트 코드를 디버깅하는 대신 소스맵을 사용해서 런타임에 타입스크립트 코드를 디버깅하기
+- 소스맵이 최종적으로 변환된 코드에 완전히 매핑되었는지 확인하기
+- 소스맵에 원본 코드가 그대로 그대로 포함되도록 설정되어 있을 수도 있음
+  - 공개되지 않도록 설정 확인하기
